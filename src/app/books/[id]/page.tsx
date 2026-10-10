@@ -11,15 +11,18 @@ interface IbookDetailPageProp {
 }
 
 const getBooks = async () => {
-  const res = await fetch("http://localhost:3000/booksData.json");
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch books");
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`,
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error Featching Books Data", error);
+    return [];
   }
-
-  const data = await res.json();
-  return data;
 };
+
 
 const BookDetailPage = async ({ params }: IbookDetailPageProp) => {
   const { id } = await params;
