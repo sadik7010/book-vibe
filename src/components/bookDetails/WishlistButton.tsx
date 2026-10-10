@@ -7,11 +7,11 @@ import { toast } from "react-toastify";
 
 const WishlistButton = ({book}:{book:Ibook}) => {
   
-    const {wishList,setWishlist} = useContext(BooksContext)
+    const {wishlist,setWishlist} = useContext(BooksContext)
     
     
     const handleAddToWishlist = ()=> {
-         setWishlist([...wishList,book])
+         setWishlist([...wishlist,book])
          
           toast.success(`You add Wishlist '${book.bookName}'`);
         console.log('read book button triggred',book);

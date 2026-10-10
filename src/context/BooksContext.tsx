@@ -18,11 +18,11 @@ export const BooksContext = createContext<IbooksContext>({
 
 const BooksProvider = ({ children }: { children: React.ReactNode }) => {
   const [readBooks, setReadBooks] = useState<Ibook[]>([]);
-  const [wishList, setWishlist] = useState<Ibook[]>([]);
+  const [wishlist, setWishlist] = useState<Ibook[]>([]);
   const sharedDtaa = {
     readBooks,
     setReadBooks,
-    wishlist: wishList,
+    wishlist: wishlist,
     setWishlist,
   };
   return (
