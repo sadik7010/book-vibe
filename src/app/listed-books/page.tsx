@@ -6,8 +6,11 @@ import React, { useContext, useState } from "react";
 import BookListCard from "./BookListCard";
 
 const ListedBooksPage = () => {
-  const { readBooks, wishList } = useContext(BooksContext);
-  const {shortby,setShortby} = useState<'rating '| 'Pages' | 'year'> ('rating')
+  const { readBooks, wishList } = useContext(BooksContext) as unknown as {
+    readBooks: Ibook[];
+    wishList: Ibook[];
+  };
+  const [shortby, setShortby] = useState<"rating" | "pages" | "year">("rating");
   console.log(readBooks, wishList, "ReadBooks", "wishlist");
   return (
     <div className="container mx-auto py-5">
@@ -16,11 +19,15 @@ const ListedBooksPage = () => {
       </h1>
 
       <div className="text-center">
-        <select defaultValue="Pick a Runtime" className="select select-success">
+        <select
+          value={shortby}
+          onChange={(event) => setShortby(event.target.value as typeof shortby)}
+          className="select select-success"
+        >
           <option disabled={true}>Sort By</option>
-          <option value={'rating'}>Rating</option>
-          <option value={'pages'}>Number of pages</option>
-          <option value={'year'}>Publisher year</option>
+          <option value={"rating"}>Rating</option>
+          <option value={"pages"}>Number of pages</option>
+          <option value={"year"}>Publisher year</option>
         </select>
       </div>
 
